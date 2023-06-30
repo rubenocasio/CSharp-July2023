@@ -8,18 +8,18 @@ Person personTwo = new Person()
     LastName = "Jordan"
 };
 
-Console.WriteLine(personOne.FullName());
-Console.WriteLine(personTwo.FullName());
+// Console.WriteLine(personOne.FullName());
+// Console.WriteLine(personTwo.FullName());
 
 Student studentOne = new Student("Ruben", "Ocasio", "C#", 0925);
 Student studentTwo = new Student("Michael", "Jordan", "C#", 42);
 Student studentThree = new Student("Kermit", "The Frog", "C#", 1);
 
-Console.WriteLine(studentOne.FullName());
-Console.WriteLine(studentTwo.FullName());
-Console.WriteLine(studentThree.FullName());
-Console.WriteLine(studentThree.CurrentStack);
-Console.WriteLine(studentThree.StudentId);
+// Console.WriteLine(studentOne.FullName());
+// Console.WriteLine(studentTwo.FullName());
+// Console.WriteLine(studentThree.FullName());
+// Console.WriteLine(studentThree.CurrentStack);
+// Console.WriteLine(studentThree.StudentId);
 
 List<Person> personList = new List<Person>()
 {
@@ -32,7 +32,7 @@ List<Person> personList = new List<Person>()
 
 foreach(Person anything in personList )
 {
-    Console.WriteLine(anything.FullName());
+    // Console.WriteLine(anything.FullName());
 }
 
 List<Student> studentList  = new List<Student>();
@@ -42,5 +42,8 @@ studentList.Add(studentThree);
 
 foreach(Student anything in studentList )
 {
-    Console.WriteLine(anything.FullName());
+    // Console.WriteLine(anything.FullName());
 }
+
+Lecture myLecture = new Lecture("C# OOP", 3, personOne, studentList);
+Console.WriteLine(myLecture.Topic + " " + myLecture.LectureNumber + " " + myLecture.Instructor.FirstName);
