@@ -1,6 +1,6 @@
 #  Welcome to C# July 2023 <img align="left" alt="C#" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" />
 
-with your gracious hosts: @rubenocasio
+with your gracious hosts: @rubenocasio @Kaijapen @WinterPDev
 
 [link to youtube playlist here](https://www.youtube.com/playlist?list=PLySPkB3mRTfnKQ1brgqS8Bcm_1lRyV8uh)
 
