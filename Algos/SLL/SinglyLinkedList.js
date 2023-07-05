@@ -32,14 +32,14 @@ class SLList {
   isEmpty() {
     // return this.head === null;
     // or
-    if(!this.head){
+    if (!this.head) {
       // console.log("Yes, this be empty!!")
       return true
     } else {
       return false
     }
   }
-  
+
   /*
     Write a method that will add to the back of a singly linked list.
 
@@ -55,14 +55,14 @@ class SLList {
    * @returns {SinglyLinkedList} This list.
   */
   addToBack(value) {
-    if(this.isEmpty()){
+    if (this.isEmpty()) {
       this.head = new SLNode(value)
       return this;
     }
 
     let runner = this.head;
 
-    while(runner.next != null){
+    while (runner.next != null) {
       runner = runner.next
     }
 
@@ -84,6 +84,8 @@ class SLList {
     //Code goes here
   }
 
+  //****** Tuesday Algo ********
+
   /**
    * Creates a new node with the given data and inserts that node at the front
    * of this list.
@@ -93,7 +95,17 @@ class SLList {
    * @returns {SLList} This list.
    */
   addToFront(value) {
-    //Code goes here
+    // Step 1: Let's create our new node
+    let newNode = new SLNode(value);
+
+    // Step 2: Assign that new node's .next pointer to be the current head of the list
+    newNode.next = this.head;
+
+    // Step 3: And reassign the head of the list to now be the new node.
+    this.head = newNode;
+
+    // Step 4: Return the list.
+    return this;
   }
 
   /**
@@ -103,7 +115,23 @@ class SLList {
    * @returns {any} The data from the removed node.
    */
   removeHead() {
-    //Code goes here
+    // If the list is empty, we can't possibly remove anything
+    if (this.isEmpty()) {
+      // So let's let it be known and just return the list.
+      console.log("List is already empty.");
+      return null;
+    }
+    // Let's hold onto the current head so we can eventually return it
+    let removed = this.head;
+    // Set the head to the current head's next node
+    this.head = removed.next;
+    // Chop off the removed node's .next so we can treat it
+    // as a stand-alone node
+    removed.next = null;
+
+    // and return it.
+    return removed;
+
   }
 
   // 
@@ -113,8 +141,29 @@ class SLList {
    * @returns {number|NaN} The average of the node's data.
    */
   average() {
-    //Code goes here
+    if (this.isEmpty()) {
+      console.log("List is empty.");
+      return 0;
+    }
+    // We'll use 2 variables to keep track of the sum and number of nodes
+    let sum = 0;
+    let count = 0;
+    // Let's start our runner at the head of the list
+    let runner = this.head;
+    // And move it until it's null
+    while (runner != null) {
+      // At each node, we'll add its value to the sum and increment our counter
+      sum += runner.value;
+      count++;
+      // and move the runner down the list
+      runner = runner.next;
+    }
+
+    // Now that we've touched all of the nodes, lets calculate and return the average.
+    return sum / count;
   }
+
+  //****** Wednesday *******
 
   /**
    * Removes the last node of this list.
@@ -150,8 +199,87 @@ class SLList {
     //Code goes here
   }
 
+  /*
+   * EXTRA
+   * Recursively finds the maximum integer data of the nodes in this list.
+   * - Time: O(?).
+   * - Space: O(?).
+   * @param {ListNode} runner The start or current node during traversal, or null
+   *    when the end of the list is reached.
+   * @param {ListNode} maxNode Keeps track of the node that contains the current
+   *    max integer as it's data.
+   * @returns {?number} The max int or null if none.
+   */
+  recursiveMax(runner = this.head, maxNode = this.head) { }
 
-  // Here's a gimme: This will print the contents of a singly linked list.
+  //****** Thursday *******
+
+  /**
+   * Retrieves the data of the second to last node in this list.
+   * - Time: O(?).
+   * - Space: O(?).
+   * @returns {any} The data of the second to last node or null if there is no
+   *    second to last node.
+   */
+  secondToLast() { }
+
+  /**
+   * Removes the node that has the matching given val as it's data.
+   * - Time: O(?).
+   * - Space: O(?).
+   * @param {any} val The value to compare to the node's data to find the
+   *    node to be removed.
+   * @returns {boolean} Indicates if a node was removed or not.
+   */
+  removeVal(val) { }
+
+  // EXTRA
+  /**
+   * Inserts a new node before a node that has the given value as its data.
+   * - Time: O(?).
+   * - Space: O(?).
+   * @param {any} newVal The value to use for the new node that is being added.
+   * @param {any} targetVal The value to use to find the node that the newVal
+   *    should be inserted in front of.
+   * @returns {boolean} To indicate whether the node was pre-pended or not.
+   */
+  prepend(newVal, targetVal) { }
+
+    //****** Friday *******
+  /**
+   * Concatenates the nodes of a given list onto the back of this list.
+   * - Time: O(?).
+   * - Space: O(?).
+   * @param {SinglyLinkedList} addList An instance of a different list whose
+   *    whose nodes will be added to the back of this list.
+   * @returns {SinglyLinkedList} This list with the added nodes.
+   */
+  concat(addList) { }
+
+  /**
+   * Finds the node with the smallest data and moves that node to the front of
+   * this list.
+   * - Time: O(?).
+   * - Space: O(?).
+   * @returns {SinglyLinkedList} This list.
+   */
+  moveMinToFront() { }
+
+  // EXTRA
+  /**
+   * Splits this list into two lists where the 2nd list starts with the node
+   * that has the given value.
+   * splitOnVal(5) for the list (1=>3=>5=>2=>4) will change list to (1=>3)
+   * and the return value will be a new list containing (5=>2=>4)
+   * - Time: O(?).
+   * - Space: O(?).
+   * @param {any} val The value in the node that the list should be split on.
+   * @returns {SinglyLinkedList} The split list containing the nodes that are
+   *    no longer in this list.
+   */
+  splitOnVal(val) { }
+
+  //Here's a gimme: This will print the contents of a singly linked list.
   printList() {
     if (this.isEmpty()) {
       console.log("This list is empty");
