@@ -1,3 +1,7 @@
+/*
+  https://visualgo.net/en
+https://www.geeksforgeeks.org/applications-of-linked-list-data-structure/
+*/
 // This is the class for our Singly Linked Node
 class SLNode {
   // The constructor is built to take 1 parameter; the value of the node we want
