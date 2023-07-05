@@ -15,6 +15,7 @@ class SLNode {
     this.next = null;
   }
 }
+
 class SLList {
   constructor() {
     // The head marks the beginning of the linked list.
@@ -29,6 +30,14 @@ class SLList {
  * @returns {boolean}
  */
   isEmpty() {
+    // return this.head === null;
+    // or
+    if(!this.head){
+      // console.log("Yes, this be empty!!")
+      return true
+    } else {
+      return false
+    }
   }
   
   /*
@@ -46,7 +55,20 @@ class SLList {
    * @returns {SinglyLinkedList} This list.
   */
   addToBack(value) {
-    //Code goes here
+    if(this.isEmpty()){
+      this.head = new SLNode(value)
+      return this;
+    }
+
+    let runner = this.head;
+
+    while(runner.next != null){
+      runner = runner.next
+    }
+
+    runner.next = new SLNode(value);
+
+    return this;
   }
   /**
    * BONUS: Creates a new node with the given data and inserts it at the back of
@@ -153,6 +175,7 @@ Below commented code depends on insertAtBack method to be completed,
 after completing it, uncomment the code.
 */
 let myList = new SLList();
+
 myList.addToBack(1).addToBack(2).addToBack(3).addToBack(4).addToBack(5).addToBack(-8).addToBack(-6);
 myList.printList()
 
