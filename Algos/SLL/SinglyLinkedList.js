@@ -1,6 +1,8 @@
 /*
+
   https://visualgo.net/en
-https://www.geeksforgeeks.org/applications-of-linked-list-data-structure/
+  https://www.geeksforgeeks.org/applications-of-linked-list-data-structure/
+
 */
 // This is the class for our Singly Linked Node
 class SLNode {
@@ -145,20 +147,24 @@ class SLList {
       console.log("List is empty.");
       return 0;
     }
+  
     // We'll use 2 variables to keep track of the sum and number of nodes
     let sum = 0;
     let count = 0;
+  
     // Let's start our runner at the head of the list
     let runner = this.head;
+
     // And move it until it's null
     while (runner != null) {
+
       // At each node, we'll add its value to the sum and increment our counter
       sum += runner.value;
       count++;
+
       // and move the runner down the list
       runner = runner.next;
     }
-
     // Now that we've touched all of the nodes, lets calculate and return the average.
     return sum / count;
   }
@@ -307,8 +313,11 @@ let myList = new SLList();
 myList.addToBack(1).addToBack(2).addToBack(3).addToBack(4).addToBack(5).addToBack(-8).addToBack(-6);
 myList.printList()
 
-// const singleNodeList = new SinglyLinkedList().addToBack([1]);
-// const biNodeList = new SinglyLinkedList().addToBack([1, 2]);
-// const firstThreeList = new SinglyLinkedList().addToBack([1, 2, 3]);
-// const secondThreeList = new SinglyLinkedList().addToBack([4, 5, 6]);
-// const unorderedList = new SinglyLinkedList().addToBack([-5, -10, 4, -3, 6, 1, -7, -2,]);
+myList.addToFront(60).addToFront(75).addToFront(23).addToFront(11).addToFront(88).addToFront(55).addToFront(45).addToFront(25)
+myList.printList()
+
+myList.removeHead()
+myList.printList()
+
+console.log(myList.average())
+
