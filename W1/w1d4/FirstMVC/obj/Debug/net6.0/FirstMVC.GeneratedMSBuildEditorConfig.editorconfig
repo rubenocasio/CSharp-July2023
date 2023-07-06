@@ -15,6 +15,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\ruben\OneDrive\Documents\Coding Dojo\Instruction\CSharp-July2023\W1\w1d4\FirstMVC
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/ruben/OneDrive/Documents/Coding Dojo/Instruction/CSharp-July2023/W1/w1d4/FirstMVC/Views/Home/AllPets.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBbGxQZXRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/ruben/OneDrive/Documents/Coding Dojo/Instruction/CSharp-July2023/W1/w1d4/FirstMVC/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

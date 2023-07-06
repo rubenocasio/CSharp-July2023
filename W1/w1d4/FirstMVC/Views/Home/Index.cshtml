@@ -1,8 +1,38 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model Pet
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+        <form asp-action="Process" asp-controller="Home" method="post">
+            <div class="mb-3">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Species"></label>
+                <input asp-for="Species" class="form-control">
+                <span asp-validation-for="Species" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Age"></label>
+                <input asp-for="Age" class="form-control">
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Color"></label>
+                <input asp-for="Color" class="form-control">
+                <span asp-validation-for="Color" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="IsFriendly"></label>
+                <input asp-for="IsFriendly">
+                @* <span asp-validation-for="IsFriendly" class="text-danger"></span> *@
+            </div>
+              <div class="mb-3">
+                <button type="submit" class="btn btn-outline-dark mt-3">Submit</button>
+              </div>  
+        </form>
 </div>

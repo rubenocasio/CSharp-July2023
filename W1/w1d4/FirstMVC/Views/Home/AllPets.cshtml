@@ -1,0 +1,8 @@
+@model List<Pet>
+
+<h1>Here are all the Pets you ordered:</h1>
+
+@foreach(Pet p in Model)
+{
+    <p>@p.Name the @p.Species who is @p.Age years old that might be friendly: @p.IsFriendly</p>
+}
