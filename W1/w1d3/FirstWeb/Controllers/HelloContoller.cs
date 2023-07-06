@@ -18,13 +18,36 @@ public class HelloController : Controller
         ViewBag.Number = 0925;
         return View("Index");
     }
-
+    //http://localhost:5xxx/user/more
     [HttpGet("user/more")]
     public ViewResult AUser()
     {
         // return "Hello World for more information!";
         ViewBag.Whateveryouwanttobethename = "Kyle";
         return View();
+    }
+
+    [HttpGet("user/{id}")]
+    public string OneUser(int id)
+    {
+        return $"Hello World here is my id: {id}";
+        
+    }
+
+    [HttpPost("process")]
+
+    public IActionResult Process(string FavoriteAnimal)
+    {
+        if(FavoriteAnimal.ToLower() == "dog")
+        {
+            ViewBag.Error = "Dogs are the best, but try something else!!";
+            ViewBag.Whateveryouwanttobethename = "Carlie";
+            ViewBag.Number = 0925;
+            return View("Index");
+        }
+        Console.WriteLine(FavoriteAnimal);
+        
+        return View("Index");
     }
 
 }

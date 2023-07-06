@@ -3,10 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/style.css" />
     <title>First Web Lecture</title>
 </head>
 <body>
         <h1>This is our First Web Application Lecture</h1>
         <h3>Hello, @ViewBag.Whateveryouwanttobethename  @ViewBag.Number, welcome to C#</h3>
+
+        <form action="process" method="post">
+            <label for="FavoriteAnimal">What is your favorite animal?</label>
+            <input type="text" name="FavoriteAnimal">
+            <span>
+                @{
+                    if(ViewBag.Error == null)
+                    {
+                        <p></p>
+                    } else {
+                        <p>Dogs are the best</p>
+                        <img src="~/image/puppy.jpg" alt="" height="150px">
+                    }
+                }
+            </span>
+            <button type="submit">Submit</button>
+        </form>
 </body>
 </html>
