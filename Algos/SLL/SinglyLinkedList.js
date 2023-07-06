@@ -147,11 +147,11 @@ class SLList {
       console.log("List is empty.");
       return 0;
     }
-  
+
     // We'll use 2 variables to keep track of the sum and number of nodes
     let sum = 0;
     let count = 0;
-  
+
     // Let's start our runner at the head of the list
     let runner = this.head;
 
@@ -178,7 +178,42 @@ class SLList {
    * @returns {any} The data from the node that was removed.
    */
   removeBack() {
-    //Code goes here
+    // First step: Is the list empty?
+    if (this.isEmpty()) {
+      console.log("List is empty.");
+      return null;
+    }
+    // Second step: Is the list only one element long? 
+    // If so, just set the head to null
+    else if (this.head.next == null) {
+      let temp = this.head;
+      this.head = null;
+      return temp;
+    }
+    //If either of those conditions weren't met, let's get down to business
+    else {
+      // We'll need 2 iterators. Let's call them runner and walker
+
+      // walker will start at the head, and runner at the 2nd node
+      let walker = this.head;
+      let runner = this.head.next;
+
+      // And let's iterate so that runner reachest the last node,
+      // with walker remaining 1 node behind
+      while (runner.next != null) {
+        // move walker to the runner
+        walker = runner;
+        // and move runner to the next node
+        runner = runner.next;
+      }
+      // If we've broken out of the loop, then runner is the last node,
+      // and walker is the second to last node.
+
+      // Set walker.next to null, which essentially lops runner off 
+      walker.next = null;
+      // and return the runner (previously the final node)
+      return runner;
+    }
   }
 
   /**
@@ -188,16 +223,31 @@ class SLList {
    * @param {any} val The data to search for in the nodes of this list.
    * @returns {boolean}
    */
-  contains(val) {
-    //Code goes here
+  contains(value) {
+    // Basically what we want to do here is run through each node
+    // and check for a matching value.
+    // So let's create our runner
+    let runner = this.head;
+    while (runner != null) {
+      // We'll check if the runner's value matches the value requested
+      if (runner.value == value) {
+        // if they match, the list contains that value!
+        return true;
+      }
+      // Otherwise let's progress down the list
+      runner = runner.next;
+    }
+    // if we checked every node in the list and never found the value,
+    // then the list clearly doesn't contain that value.
+    return false;
   }
 
   /**
-   * Determines whether or not the given search value exists in this list.
+   * EXTRA Determines whether or not the given search value exists in this list.
    * - Time: O(?).
    * - Space: O(?).
    * @param {any} val The data to search for in the nodes of this list.
-   * @param {?ListNode} current The current node during the traversal of this list
+   * @param {ListNode?} current The current node during the traversal of this list
    *    or null when the end of the list has been reached.
    * @returns {boolean}
    */
@@ -227,7 +277,19 @@ class SLList {
    * @returns {any} The data of the second to last node or null if there is no
    *    second to last node.
    */
-  secondToLast() { }
+  secondToLast() {
+    if (!this.head || !this.head.next) {
+      return null;
+    }
+
+    // There are at least 2 nodes since the above return hasn't happened.
+    let runner = this.head;
+
+    while (runner.next.next) {
+      runner = runner.next;
+    }
+    return runner.data;
+  }
 
   /**
    * Removes the node that has the matching given val as it's data.
@@ -237,7 +299,27 @@ class SLList {
    *    node to be removed.
    * @returns {boolean} Indicates if a node was removed or not.
    */
-  removeVal(val) { }
+  removeVal(val) {
+    if (this.isEmpty()) {
+      return false;
+    }
+
+    if (this.head.data === val) {
+      this.removeHead();
+      return true;
+    }
+
+    let runner = this.head;
+
+    while (runner.next) {
+      if (runner.next.data === val) {
+        runner.next = runner.next.next;
+        return true;
+      }
+      runner = runner.next;
+    }
+    return false;
+  }
 
   // EXTRA
   /**
@@ -251,7 +333,7 @@ class SLList {
    */
   prepend(newVal, targetVal) { }
 
-    //****** Friday *******
+  //****** Friday *******
   /**
    * Concatenates the nodes of a given list onto the back of this list.
    * - Time: O(?).
@@ -321,3 +403,10 @@ myList.printList()
 
 console.log(myList.average())
 
+myList.removeBack()
+myList.printList()
+
+console.log(myList.contains(60))
+myList.secondToLast()
+myList.removeVal(60)
+myList.printList()
