@@ -3,6 +3,13 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+        <h1>@ViewBag.Name</h1>
+    <h1 class="display-4">Welcome @Context.Session.GetString("UserName")</h1>
+    <h2>My Session #: @Context.Session.GetInt32("MyNum")</h2>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    <form action="/Login" method="post">
+        <input type="text" name="NewName" class="form-control">
+        <button type="submit" class="btn btn-outline-info mt-2">Submit</button>
+    </form>
 </div>

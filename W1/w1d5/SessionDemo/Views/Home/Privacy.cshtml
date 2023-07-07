@@ -3,4 +3,12 @@
 }
 <h1>@ViewData["Title"]</h1>
 
+<h1>@ViewBag.Name</h1>
+
 <p>Use this page to detail your site's privacy policy.</p>
+
+<h1>@Context.Session.GetString("UserName") @Context.Session.GetInt32("MyNum")</h1>
+
+<form action="/logout" method="post">
+    <button type="submit" class="btn btn-outline-dark mt-2">Logout</button>
+</form>
