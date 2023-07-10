@@ -86,6 +86,7 @@ class BinarySearchTree {
 }
 
 const emptyTree = new BinarySearchTree();
+emptyTree.print()
 
 const oneNodeTree = new BinarySearchTree();
 oneNodeTree.root = new BSTNode(10);
@@ -98,6 +99,7 @@ oneNodeTree.root = new BSTNode(10);
     5     15
 */
 const twoLevelTree = new BinarySearchTree();
+
 twoLevelTree.root = new BSTNode(10);
 twoLevelTree.root.left = new BSTNode(5);
 twoLevelTree.root.right = new BSTNode(15);
@@ -118,7 +120,7 @@ threeLevelTree.root.left.left = new BSTNode(2);
 threeLevelTree.root.left.right = new BSTNode(6);
 threeLevelTree.root.right = new BSTNode(15);
 threeLevelTree.root.right.left = new BSTNode(13);
-// threeLevelTree.print()
+threeLevelTree.print()
 
 /* fullTree
                     root
