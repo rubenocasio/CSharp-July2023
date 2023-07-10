@@ -1,0 +1,108 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to our Game Store!</h1>
+    <h2>All games in our Database!!</h2>
+    <table class="table table-striped">
+        <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Rating</th>
+            <th>Genre</th>
+            <th>Platform</th>
+        </tr>
+        @foreach(Game g in ViewBag.AllGames)
+        {
+            <tr>
+                <td>@g.Title</td>
+                <td>$@g.Price</td>
+                <td>@g.Rating</td>
+                <td>@g.Genre</td>
+                <td>@g.Platform</td>
+            </tr>
+        }
+    </table>
+
+    <h2>Available on all Platforms</h2>
+    <table class="table table-striped">
+        <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Rating</th>
+            <th>Genre</th>
+            <th>Platform</th>
+        </tr>
+        @foreach(Game g in ViewBag.allPlatforms)
+        {
+            <tr>
+                <td>@g.Title</td>
+                <td>$@g.Price</td>
+                <td>@g.Rating</td>
+                <td>@g.Genre</td>
+                <td>@g.Platform</td>
+            </tr>
+        }
+    </table>
+
+    <h2>These are the Mature games!</h2>
+    <table class="table table-striped">
+        <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Rating</th>
+            <th>Genre</th>
+            <th>Platform</th>
+        </tr>
+        @foreach(Game g in ViewBag.topMGames)
+        {
+            <tr>
+                <td>@g.Title</td>
+                <td>$@g.Price</td>
+                <td>@g.Rating</td>
+                <td>@g.Genre</td>
+                <td>@g.Platform</td>
+            </tr>
+        }
+    </table>
+    <h2>This is one game!</h2>
+    <table class="table table-striped">
+        <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Rating</th>
+            <th>Genre</th>
+            <th>Platform</th>
+        </tr>
+
+        <tr>
+            <td>@ViewBag.singleGame.Title</td>
+            <td>$@ViewBag.singleGame.Price</td>
+            <td>@ViewBag.singleGame.Rating</td>
+            <td>@ViewBag.singleGame.Genre</td>
+            <td>@ViewBag.singleGame.Platform</td>
+        </tr>
+
+    </table>
+<h2>This starts with O</h2>
+    <table class="table table-striped">
+        <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Rating</th>
+            <th>Genre</th>
+            <th>Platform</th>
+        </tr>
+        @foreach(Game g in ViewBag.startsWithO)
+        {
+            <tr>
+                <td>@g.Title</td>
+                <td>$@g.Price</td>
+                <td>@g.Rating</td>
+                <td>@g.Genre</td>
+                <td>@g.Platform</td>
+            </tr>
+        }
+    </table>
+</div>
