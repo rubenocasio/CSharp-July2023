@@ -159,7 +159,37 @@ class BinarySearchTree {
  * @param {number} newVal The data to be added to a new node.
  * @returns {BinarySearchTree} This tree.
  */
-  insert(newVal) { }
+  insert(newVal) {
+    // Create a new node.
+    const newNode = new BSTNode(newVal);
+
+    // If there's no root, make the new node the root.
+    if (this.root === null) {
+      this.root = newNode;
+      return this;
+    }
+
+    let currentNode = this.root;
+    while (true) {
+      if (newVal < currentNode.data) {
+        // If there's no left child here yet, place the new node here.
+        if (!currentNode.left) {
+          currentNode.left = newNode;
+          return this;
+        }
+        // If there is a node, keep moving down the tree.
+        currentNode = currentNode.left;
+      } else {
+        // If there's no right child here yet, place the new node here.
+        if (!currentNode.right) {
+          currentNode.right = newNode;
+          return this;
+        }
+        // If there is a node, keep moving down the tree.
+        currentNode = currentNode.right;
+      }
+    }
+  }
 
   /**
    * Inserts a new node with the given newVal in the right place to preserver
@@ -171,8 +201,65 @@ class BinarySearchTree {
    *    the tree is being traversed.
    * @returns {BinarySearchTree} This tree.
    */
-  insertRecursive(newVal, curr = this.root) { }
+  insertRecursive(newVal, curr = this.root) {
+    // If there's no root, make the new node the root.
+    if (this.root === null) {
+      this.root = new BSTNode(newVal);
+      return this;
+    }
 
+    if (newVal < curr.data) {
+      // If there's no left, add the new node to the left.
+      if (!curr.left) {
+        curr.left = new BSTNode(newVal);
+        return this;
+      }
+      // If there is a node, keep moving down the tree.
+      return this.insertRecursive(newVal, curr.left);
+    } else {
+      // If there's no right, add the new node to the right.
+      if (!curr.right) {
+        curr.right = new BSTNode(newVal);
+        return this;
+      }
+      // If there is a node, keep moving down the tree.
+      return this.insertRecursive(newVal, curr.right);
+    }
+  }
+  /**
+   * DFS Preorder: (CurrNode, Left, Right)
+   * Converts this BST into an array following Depth First Search preorder.
+   * Example on the fullTree var:
+   * [25, 15, 10, 4, 12, 22, 18, 24, 50, 35, 31, 44, 70, 66, 90]
+   * @param {Node} node The current node during the traversal of this tree.
+   * @param {Array<number>} vals The data that has been visited so far.
+   * @returns {Array<number>} The vals in DFS Preorder once all nodes visited.
+   */
+  toArrPreorder(node = this.root, vals = []) { }
+
+  /**
+   * DFS Inorder: (Left, CurrNode, Right)
+   * Converts this BST into an array following Depth First Search inorder.
+   * Example on the fullTree var:
+   * [4, 10, 12, 15, 18, 22, 24, 25, 31, 35, 44, 50, 66, 70, 90]
+   * @param {Node} node The current node during the traversal of this tree.
+   * @param {Array<number>} vals The data that has been visited so far.
+   * @returns {Array<number>} The vals in DFS Preorder once all nodes visited.
+   */
+  toArrInorder(node = this.root, vals = []) { }
+
+  /**
+   * DFS Postorder (Left, Right, CurrNode)
+   * Converts this BST into an array following Depth First Search postorder.
+   * Example on the fullTree var:
+   * [4, 12, 10, 18, 24, 22, 15, 31, 44, 35, 66, 90, 70, 50, 25]
+   * @param {Node} node The current node during the traversal of this tree.
+   * @param {Array<number>} vals The data that has been visited so far.
+   * @returns {Array<number>} The vals in DFS Preorder once all nodes visited.
+   */
+  toArrPostorder(node = this.root, vals = []) { }
+
+  
   // Logs this tree horizontally with the root on the left.
   print(node = this.root, spaceCnt = 0, spaceIncr = 10) {
     if (!node) {
@@ -239,20 +326,39 @@ threeLevelTree.print()
     4    12  18  24  31  44 66  90
 */
 /***************** Uncomment after insert method is created. ****************/
-// const fullTree = new BinarySearchTree();
-// fullTree
-//   .insert(25)
-//   .insert(15)
-//   .insert(10)
-//   .insert(22)
-//   .insert(4)
-//   .insert(12)
-//   .insert(18)
-//   .insert(24)
-//   .insert(50)
-//   .insert(35)
-//   .insert(70)
-//   .insert(31)
-//   .insert(44)
-//   .insert(66)
-//   .insert(90);
+const fullTree = new BinarySearchTree();
+fullTree
+  .insert(25)
+  .insert(15)
+  .insert(10)
+  .insert(22)
+  .insert(4)
+  .insert(12)
+  .insert(18)
+  .insert(24)
+  .insert(50)
+  .insert(35)
+  .insert(70)
+  .insert(31)
+  .insert(44)
+  .insert(66)
+  .insert(90);
+
+fullTree.print()
+fullTree
+  .insertRecursive(25)
+  .insertRecursive(15)
+  .insertRecursive(10)
+  .insertRecursive(22)
+  .insertRecursive(4)
+  .insertRecursive(12)
+  .insertRecursive(18)
+  .insertRecursive(24)
+  .insertRecursive(50)
+  .insertRecursive(35)
+  .insertRecursive(70)
+  .insertRecursive(31)
+  .insertRecursive(44)
+  .insertRecursive(66)
+  .insertRecursive(90);
+fullTree.print()
