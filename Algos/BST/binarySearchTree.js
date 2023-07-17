@@ -289,7 +289,29 @@ class BinarySearchTree {
  * @param {Node} current The current node during the traversal of this tree.
  * @returns {Array<number>} The data of all nodes in BFS order.
  */
-  toArrLevelorder(current = this.root) { }
+  toArrLevelorder(current = this.root) {
+    const queue = [];
+    const vals = [];
+    if (current) {
+      queue.push(current);
+    }
+
+    // other tree structures have more than a left and a right, so children could be looped over and enqueued
+    while (queue.length > 0) {
+      const dequeuedNode = queue.shift();
+      vals.push(dequeuedNode.data);
+
+      if (dequeuedNode.left) {
+        queue.push(dequeuedNode.left);
+      }
+
+      if (dequeuedNode.right) {
+        queue.push(dequeuedNode.right);
+      }
+
+    }
+    return vals;
+  }
 
   /**
    * Recursively counts the total number of nodes in this tree.
@@ -298,7 +320,14 @@ class BinarySearchTree {
    * @param {Node} node The current node during the traversal of this tree.
    * @returns {number} The total number of nodes.
    */
-  size(node = this.root) { }
+  size(node = this.root) {
+    if (!node) {
+      return 0;
+    }
+    // Translates into something like: 1 + 1 + 1 + 1 + 0 + 1 + 1 + 1 + 0
+    // instead of using a sum variable.
+    return 1 + this.size(node.left) + this.size(node.right);
+  }
 
   /**
    * Calculates the height of the tree which is based on how many nodes from
@@ -308,7 +337,13 @@ class BinarySearchTree {
    * @param {Node} node The current node during traversal of this tree.
    * @returns {number} The height of the tree.
    */
-  height(node = this.root) { }
+  height(node = this.root) {
+    if (!node) {
+      return 0;
+    }
+    // base case returns 0 but then the + 1 starts incrementing for each recursive call
+    return 1 + Math.max(this.height(node.left), this.height(node.right));
+  }
 
   /**
    * Determines if this tree is a full tree. A full tree is a tree where every
@@ -318,7 +353,22 @@ class BinarySearchTree {
    * @param {Node} node The current node during traversal of this tree.
    * @returns {boolean} Indicates if this tree is full.
    */
-  isFull(node = this.root) { }
+  isFull(node = this.root) {
+    // If empty tree
+    if (!node) {
+      return false;
+    }
+    // if leaf node, leaf node is the end which means it has no left or right
+    if (!node.left && !node.right) {
+      return true;
+    }
+    // if both left and right subtrees are not null and
+    // both left and right subtrees are full
+    if (node.left && node.right) {
+      return this.isFull(node.left) && this.isFull(node.right);
+    }
+    return false;
+  }
 
   // Logs this tree horizontally with the root on the left.
   print(node = this.root, spaceCnt = 0, spaceIncr = 10) {
@@ -402,9 +452,14 @@ fullTree
   .insert(31)
   .insert(44)
   .insert(66)
-  .insert(90);
+  .insert(90)
+  // .insert(2);//Testing purposes only
 
-fullTree.print()
-console.log(fullTree.toArrInorder())
-console.log(fullTree.toArrPreorder())
-console.log(fullTree.toArrPostorder())
+// fullTree.print()
+// console.log(fullTree.toArrInorder())
+// console.log(fullTree.toArrPreorder())
+// console.log(fullTree.toArrPostorder())
+console.log(fullTree.toArrLevelorder())
+console.log(fullTree.size())
+console.log(fullTree.height())
+console.log(fullTree.isFull())
