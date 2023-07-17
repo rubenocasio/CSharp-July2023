@@ -17,6 +17,17 @@ class MinHeap {
     this.heap = [null];
   }
 
+  idxOfParent(i){
+    return Math.floor(i /2)
+  }
+  idxOfLeftChild(i){
+    return i * 2
+  }
+  idxOfRightChild(i){
+    return i * 2 + 1
+  }
+
+
   /**
    * Retrieves the top (minimum number) in the heap without removing it.
    * - Time: O(1) constant.
