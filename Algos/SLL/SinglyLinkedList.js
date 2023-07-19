@@ -342,7 +342,21 @@ class SLList {
    *    whose nodes will be added to the back of this list.
    * @returns {SinglyLinkedList} This list with the added nodes.
    */
-  concat(addList) { }
+  concat(list) {
+    if (this.isEmpty()) {
+      this.head = list.head;
+      list.head = null;
+      return this;
+    }
+
+    let runner = this.head;
+    while (runner.next != null) {
+      runner = runner.next;
+    }
+    runner.next = list.head;
+    list.head = null;
+    return this;
+  }
 
   /**
    * Finds the node with the smallest data and moves that node to the front of
@@ -351,7 +365,29 @@ class SLList {
    * - Space: O(?).
    * @returns {SinglyLinkedList} This list.
    */
-  moveMinToFront() { }
+  moveMinToFront() {
+    if (this.isEmpty()) {
+      return this;
+    }
+    let min = this.head;
+    let minPrev = null;
+    let runner = this.head.next;
+    while (runner.next != null) {
+      if (runner.next.value < min.value) {
+        min = runner.next;
+        minPrev = runner;
+      }
+      runner = runner.next;
+    }
+
+    if (min != this.head) {
+      minPrev.next = min.next;
+      min.next = this.head;
+      this.head = min;
+    }
+
+    return this;
+  }
 
   // EXTRA
   /**
@@ -365,7 +401,58 @@ class SLList {
    * @returns {SinglyLinkedList} The split list containing the nodes that are
    *    no longer in this list.
    */
-  splitOnVal(val) { }
+  splitOnVal(val) {
+    if (this.isEmpty()) {
+      return null;
+    }
+
+    let runner = this.head;
+
+    if (this.head.value == val) {
+      let newList = new SLList();
+      newList.head = this.head;
+      this.head = null;
+      return newList;
+    }
+
+    while (runner.next != null) {
+      if (runner.next.value == val) {
+        let newList = new SLList();
+        newList.head = runner.next;
+        runner.next = null;
+        return newList;
+      }
+      runner = runner.next;
+    }
+
+    return null;
+  }
+
+  /**
+ * Reverses this list in-place without using any extra lists.
+ * - Time: (?).
+ * - Space: (?).
+ * @returns {SinglyLinkedList} This list.
+ */
+  reverse() { }
+
+  /**
+   * Determines whether the list has a loop in it which would result in
+   * infinitely traversing unless otherwise avoided. A loop is when a node's
+   * next points to a node that is behind it.
+   * - Time: (?).
+   * - Space: (?).
+   * @returns {boolean} Whether the list has a loop or not.
+   */
+  hasLoop() { }
+
+  /**
+   * Removes all the nodes that have a negative integer as their data.
+   * - Time: (?).
+   * - Space: (?).
+   * @returns {SinglyLinkedList} This list after the negatives are removed.
+   */
+  removeNegatives() { }
 
   //Here's a gimme: This will print the contents of a singly linked list.
   printList() {
