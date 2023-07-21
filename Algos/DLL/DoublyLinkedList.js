@@ -171,7 +171,7 @@ class DoublyLinkedList {
    * @returns {boolean} Indicates if the new node was added.
    */
   insertBefore(targetVal, newVal) { }
-  
+
   /**
    * Determines if this list is empty.
    * - Time: O(1) constant.
@@ -210,15 +210,25 @@ class DoublyLinkedList {
   }
 }
 
-const emptyList = new DoublyLinkedList();
-
 /**************** Uncomment these test lists after insertAtBack is created. ****************/
-const singleNodeList = new DoublyLinkedList().insertAtBack(1);
-// const biNodeList = new DoublyLinkedList().insertAtBack(1).insertAtBack(2);
+const emptyList = new DoublyLinkedList();
+const singleNodeList = new DoublyLinkedList().insertAtFront(1);
+const biNodeList = new DoublyLinkedList().insertAtBack(1).insertAtBack(2);
 const triNodeList = new DoublyLinkedList().insertAtBack(1).insertAtBack(2).insertAtBack(3);
-// const firstThreeList = new DoublyLinkedList().insertAtBackMany([1, 2, 3]);
-// const secondThreeList = new DoublyLinkedList().insertAtBackMany([4, 5, 6]);
-// const unorderedList = new DoublyLinkedList().insertAtBackMany([-5,-10,4, -3, 6, 1, -7, -2,]);
+
+const firstThreeList = new DoublyLinkedList().insertAtBackMany([1, 2, 3]);
+const secondThreeList = new DoublyLinkedList().insertAtBackMany([4, 5, 6]);
+const unorderedList = new DoublyLinkedList().insertAtBackMany([-5, -10, 4, -3, 6, 1, -7, -2]);
 
 console.log(singleNodeList.toArray())
+console.log(biNodeList.toArray())
+console.log(triNodeList.toArray())
+
+console.log(biNodeList.removeMiddleNode())
+console.log(biNodeList.toArray())
+
+console.log(biNodeList.removeMiddleNode())
+console.log(biNodeList.toArray())
+
+console.log(triNodeList.removeMiddleNode())
 console.log(triNodeList.toArray())
