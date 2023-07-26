@@ -201,8 +201,11 @@ class QueueNode {
 
 class LinkedListQueue {
     constructor() {
+        // The 'top' points to the first node (front) of the queue, initially null as the queue is empty.
         this.top = null;
+        // The 'tail' points to the last node (back) of the queue, initially null as the queue is empty.
         this.tail = null;
+        // The 'size' keeps track of the number of nodes in the queue, initially 0 as the queue is empty.
         this.size = 0;
     }
 
