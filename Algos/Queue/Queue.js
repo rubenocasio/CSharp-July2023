@@ -1,3 +1,6 @@
+// Import our stack data structure to use in this file.
+const { Stack } = require("../Stack/Stack");
+
 /**
  * Class to represent a queue using an array to store the queued items.
  * Follows a FIFO (First In First Out) order where new items are added to the
@@ -167,24 +170,46 @@ class Queue {
         // Return whether the queue is a palindrome or not.
         return isPalin;
     }
+
+    /**
+     * Determines whether the sum of the left half of the queue items is equal to
+     * the sum of the right half. Avoid indexing the queue items directly via
+     * bracket notation, use the queue methods instead for practice.
+     * Use no extra array or objects.
+     * The queue should be returned to it's original order when done.
+     * - Time: O(?).
+     * - Space: O(?).
+     * @returns {boolean} Whether the sum of the left and right halves are equal.
+     */
+
+    isSumOfHalvesEqual() {
+        //Solution goes here
+    }
+
 }
 const q1 = new Queue();
 const q2 = new Queue();
 
 q1.enqueue(1)
-q1.enqueue(3)
+q1.enqueue(2)
 q1.enqueue(3);
-q1.print();
-q1.dequeue()
-q1.print();
-console.log(q1.front())
-console.log(q1.size())
+q1.enqueue(3)
+q1.enqueue(2)
+q1.enqueue(1);
+q1.print(); // 1 2 3 3 2 1
+// q1.dequeue()
+// q1.print();
+console.log(q1.front()) //1
+console.log(q1.size()) //6
+console.log(q1.isPalindrome()); //true
+console.log(q1.isSumOfHalvesEqual()) //?
 
-// q2.enqueue(1)
-// q2.enqueue(3)
-// q2.enqueue(3)
-// q2.enqueue(4);
-// q2.print();
+q2.enqueue(1)
+q2.enqueue(3)
+q2.enqueue(3)
+q2.enqueue(4);
+q2.print(); // 1 3 3 4
+console.log(q1.compareQueues(q2));
 
 /* EXTRA: Rebuild the above class using a linked list instead of an array. */
 /* 
@@ -350,24 +375,72 @@ const llq1 = new LinkedListQueue();
 const llq2 = new LinkedListQueue();
 const llq3 = new LinkedListQueue();
 
-console.log(llq1.isEmpty())
-llq1.enqueue(1)
-llq1.enqueue(2)
-llq1.enqueue(3)
-llq1.enqueue(4)
-llq1.enqueue(5)
-llq1.print()
-console.log(llq1.dequeue())
-console.log(llq1.dequeue())
-console.log(llq1.dequeue())
-console.log(llq1.dequeue())
-console.log(llq1.dequeue())
-console.log(llq1.dequeue())
-llq1.print()
-llq1.enqueue(1)
-llq1.enqueue(2)
-llq1.enqueue(3)
-llq1.enqueue(4)
-llq1.enqueue(5000)
-console.log(llq1.front())
-console.log(llq1.contains(500))
+// console.log(llq1.isEmpty())
+// llq1.enqueue(1)
+// llq1.enqueue(2)
+// llq1.enqueue(3)
+// llq1.enqueue(4)
+// llq1.enqueue(5)
+// llq1.print()
+// console.log(llq1.dequeue())
+// console.log(llq1.dequeue())
+// console.log(llq1.dequeue())
+// console.log(llq1.dequeue())
+// console.log(llq1.dequeue())
+// console.log(llq1.dequeue())
+// llq1.print()
+// llq1.enqueue(1)
+// llq1.enqueue(2)
+// llq1.enqueue(3)
+// llq1.enqueue(4)
+// llq1.enqueue(5000)
+// console.log(llq1.front())
+// console.log(llq1.contains(500))
+
+/**
+ * Class to represent a Queue but is implemented using two stacks to store the
+ * queued items without using any other objects or arrays to store the items.
+ * Retains the FIFO (First in First Out) ordering when adding / removing items.
+ */
+class TwoStackQueue {
+  constructor() {
+    this.stack1 = new Stack();
+    this.stack2 = new Stack();
+  }
+
+  /**
+   * Adds a new item to the back of the queue.
+   * - Time: O(?).
+   * - Space: O(?).
+   * @param {any} item To be added.
+   * @returns {number} The new number of items in the queue.
+   */
+  enqueue(item) {}
+
+  /**
+   * Removes the next item in the line / queue.
+   * - Time: O(?).
+   * - Space: O(?).
+   * @returns {any} The removed item.
+   */
+  dequeue() {}
+}
+
+const two1 = new TwoStackQueue();
+const two2 = new TwoStackQueue();
+
+two1.enqueue(1);
+two1.enqueue(2);
+two1.enqueue(3);
+two1.enqueue(4);
+two1.enqueue(5);
+two1.enqueue(6);
+
+two1.dequeue();
+
+two2.enqueue(1);
+two2.enqueue(2);
+two2.enqueue(3);
+two2.enqueue(4);
+two2.enqueue(5);
+two2.enqueue(6);
