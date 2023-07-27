@@ -183,8 +183,50 @@ class Queue {
      */
 
     isSumOfHalvesEqual() {
-        //Solution goes here
+        // Get the total number of items in the queue
+        const len = this.size();
+    
+        // If the number of items is odd, the queue can't be split evenly into two halves
+        // So we return false immediately
+        if (len % 2 !== 0) {
+            return false;
+        }
+    
+        // Calculate the size of a half of the queue
+        const halfLen = len / 2;
+        
+        // Initialize counters for the sum of the values in the left half and right half of the queue
+        let leftSum = 0;
+        let rightSum = 0;
+    
+        // Initialize a count variable to keep track of how many items we've processed so far
+        let count = 0;
+    
+        // While loop will continue until we've processed all items in the queue
+        while (count < len) {
+            // Remove the next item from the front of the queue
+            const dequeued = this.dequeue();
+    
+            // If we're still processing the left half of the queue, add the dequeued item to leftSum
+            // Otherwise, add the dequeued item to rightSum
+            if (count < halfLen) {
+                leftSum += dequeued;
+            } else {
+                rightSum += dequeued;
+            }
+    
+            // Increment the count of items processed
+            count++;
+    
+            // After processing an item, we add it back to the end of the queue
+            // This allows us to process the entire queue without losing any items
+            this.enqueue(dequeued);
+        }
+        // After all items have been processed, if the sums of the two halves are equal, return true
+        // If the sums are not equal, return false
+        return leftSum === rightSum;
     }
+    
 
 }
 const q1 = new Queue();
@@ -195,14 +237,14 @@ q1.enqueue(2)
 q1.enqueue(3);
 q1.enqueue(3)
 q1.enqueue(2)
-q1.enqueue(1);
+q1.enqueue(10);
 q1.print(); // 1 2 3 3 2 1
 // q1.dequeue()
 // q1.print();
 console.log(q1.front()) //1
 console.log(q1.size()) //6
 console.log(q1.isPalindrome()); //true
-console.log(q1.isSumOfHalvesEqual()) //?
+console.log(q1.isSumOfHalvesEqual()) //true
 
 q2.enqueue(1)
 q2.enqueue(3)
@@ -210,6 +252,8 @@ q2.enqueue(3)
 q2.enqueue(4);
 q2.print(); // 1 3 3 4
 console.log(q1.compareQueues(q2));
+
+console.log("----Two Stack Below -----");
 
 /* EXTRA: Rebuild the above class using a linked list instead of an array. */
 /* 
@@ -403,27 +447,45 @@ const llq3 = new LinkedListQueue();
  * Retains the FIFO (First in First Out) ordering when adding / removing items.
  */
 class TwoStackQueue {
-  constructor() {
-    this.stack1 = new Stack();
-    this.stack2 = new Stack();
-  }
+    constructor() {
+        this.stack1 = new Stack();
+        this.stack2 = new Stack();
+    }
 
-  /**
-   * Adds a new item to the back of the queue.
-   * - Time: O(?).
-   * - Space: O(?).
-   * @param {any} item To be added.
-   * @returns {number} The new number of items in the queue.
-   */
-  enqueue(item) {}
+    /**
+     * Adds a new item to the back of the queue.
+     * - Time: O(?).
+     * - Space: O(?).
+     * @param {any} item To be added.
+     * @returns {number} The new number of items in the queue.
+     */
+    enqueue(item) {
+        this.stack1.push(item);
+        return this.stack1.size();
+    }
 
-  /**
-   * Removes the next item in the line / queue.
-   * - Time: O(?).
-   * - Space: O(?).
-   * @returns {any} The removed item.
-   */
-  dequeue() {}
+    /**
+     * Removes the next item in the line / queue.
+     * - Time: O(?).
+     * - Space: O(?).
+     * @returns {any} The removed item.
+     */
+    dequeue() {
+        // if both stacks are empty, we can't dequeue an item
+        if (this.stack1.isEmpty() && this.stack2.isEmpty()) {
+            throw new Error('Queue is empty');
+        }
+
+        // if stack2 is empty and stack1 is not, we transfer all elements from stack1 to stack2.
+        // the elements are now in reverse order in stack2, so we can pop and return the top element
+        if (this.stack2.isEmpty()) {
+            while (!this.stack1.isEmpty()) {
+                this.stack2.push(this.stack1.pop());
+            }
+        }
+        return this.stack2.pop();
+    }
+
 }
 
 const two1 = new TwoStackQueue();
@@ -436,11 +498,13 @@ two1.enqueue(4);
 two1.enqueue(5);
 two1.enqueue(6);
 
-two1.dequeue();
+console.log(two1.dequeue())
+console.log(two1.dequeue())
+console.log(two1)
 
-two2.enqueue(1);
-two2.enqueue(2);
-two2.enqueue(3);
-two2.enqueue(4);
-two2.enqueue(5);
-two2.enqueue(6);
+// two2.enqueue(1);
+// two2.enqueue(2);
+// two2.enqueue(3);
+// two2.enqueue(4);
+// two2.enqueue(5);
+// two2.enqueue(6);
