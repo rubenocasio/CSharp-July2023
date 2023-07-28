@@ -208,6 +208,42 @@ class DoublyLinkedList {
     items.forEach((item) => this.insertAtBack(item));
     return this;
   }
+
+  /*
+   * Retrieves the data from the nthLast node in this list.
+   * The nthLast parameter specifies the position of the node 
+   * to be retrieved from the end of the linked list. For example, if nthLast is 1,
+   * it means we need to retrieve the last node; if nthLast is 2,
+   * it means we need to retrieve the second-to-last node; and so on.
+   * - Time: O(?).
+   * - Space: O(?).
+   * @param {number} nthLast Indicates the position from the back of the list.
+   * @returns {any}
+  */
+  nthToLast(nthLast) {
+    //Solution goes here
+  }
+
+  /**
+   * Determines if the node's data of this list forms a palindrome.
+   * - Time: O(?).
+   * - Space: O(?).
+   * @returns {boolean} Indicates if this list is a palindrome.
+   */
+  isPalindrome() {
+    //Solution goes here
+  }
+
+  /**
+   * Determines if a given node in this list is in the left half of this list.
+   * - Time: O(?).
+   * - Space: O(?).
+   * @param {Node} node
+   * @returns {boolean}
+   */
+  isNodeInLeftHalf(node) {
+    //Solution goes here
+  }
 }
 
 /**************** Uncomment these test lists after insertAtBack is created. ****************/
